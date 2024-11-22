@@ -14,7 +14,7 @@ class MonitorController extends Controller
     public function index()
     {
         return view('monitor::monitors', [
-            'monitors' => Monitor::orderBy('name', 'DESC'),
+            'monitors' => Monitor::with('pulses')->get(),
         ]);
     }
 
@@ -65,7 +65,9 @@ class MonitorController extends Controller
      */
     public function edit($id)
     {
-        return view('monitor::edit');
+        return view('monitor::monitor_edit', [
+            'monitor' => Monitor::where('id', $id)->first(),
+        ]);
     }
 
     /**
@@ -73,7 +75,27 @@ class MonitorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'monitor_type' => ['required', 'int'],
+            'name' => ['required', 'string'],
+            'url' => ['required', 'string'],
+            'interval' => ['required', 'int'],
+            'expected_status_code' => ['required', 'int'],
+            'notification_type' => ['required', 'int'],
+        ]);
+
+        $monitor = Monitor::where('id', $id)->first();
+
+        $monitor->update([
+            'name' => $validated['name'],
+            'type' => $validated['monitor_type'],
+            'url' => $validated['url'],
+            'interval' => $validated['interval'],
+            'expected_status_code' => $validated['expected_status_code'],
+            'notification_type' => $validated['notification_type'],
+        ]);
+
+        return redirect(route('monitor.index'));
     }
 
     /**
