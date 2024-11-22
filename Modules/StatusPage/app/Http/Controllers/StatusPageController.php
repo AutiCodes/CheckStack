@@ -4,6 +4,7 @@ namespace Modules\StatusPage\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\Monitor\Models\Monitor;
 
 class StatusPageController extends Controller
 {
@@ -12,7 +13,9 @@ class StatusPageController extends Controller
      */
     public function index()
     {
-        return view('statuspage::index');
+        return view('statuspage::index', [
+            'monitors' => Monitor::with('pulses')->get(),
+        ]);
     }
 
     /**
