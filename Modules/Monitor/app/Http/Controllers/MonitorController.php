@@ -4,6 +4,7 @@ namespace Modules\Monitor\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\Monitor\Models\Monitor;
 
 class MonitorController extends Controller
 {
@@ -28,7 +29,25 @@ class MonitorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'monitor_type' => ['required', 'int'],
+            'name' => ['required', 'string'],
+            'url' => ['required', 'string'],
+            'interval' => ['required', 'int'],
+            'expected_status_code' => ['required', 'int'],
+            'notification_type' => ['required', 'int'],
+        ]);
+
+        Monitor::create([
+            'name' => $validated['name'],
+            'type' => $validated['monitor_type'],
+            'url' => $validated['url'],
+            'interval' => $validated['interval'],
+            'expected_status_code' => $validated['expected_status_code'],
+            'notification_type' => $validated['notification_type'],
+        ]);
+
+        return redirect(route('monitor.index'));
     }
 
     /**
