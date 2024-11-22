@@ -1,5 +1,6 @@
 {
     "Users": true,
     "Admin": true,
-    "StatusPage": true
+    "StatusPage": true,
+    "Monitor": true
 }
