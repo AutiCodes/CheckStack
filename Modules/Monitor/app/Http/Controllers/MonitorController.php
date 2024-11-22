@@ -13,11 +13,6 @@ class MonitorController extends Controller
      */
     public function index()
     {
-        $monitors = Monitor::whereIn('id', [1])->get();
-
-        foreach ($monitors as $monitor) {
-            echo $monitor->name;
-        }
         return view('monitor::monitors');
     }
 

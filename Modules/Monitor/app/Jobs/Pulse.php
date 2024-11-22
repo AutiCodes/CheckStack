@@ -32,7 +32,7 @@ class Pulse implements ShouldQueue
         $monitors = Monitor::whereIn('id', $this->monitors)->get();
 
         foreach ($monitors as $monitor) {
-            $uptime = SendPulse::getUptimeStatus($monitor->url, $monitor->status_code);
+            $uptime = SendPulse::getUptimeStatus($monitor->url, $monitor->expected_status_code);
 
             $pulse = SendedPulse::create([
                 'up' => $uptime,
