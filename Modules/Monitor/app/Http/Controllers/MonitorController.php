@@ -13,7 +13,9 @@ class MonitorController extends Controller
      */
     public function index()
     {
-        return view('monitor::monitors');
+        return view('monitor::monitors', [
+            'monitors' => Monitor::orderBy('name', 'DESC'),
+        ]);
     }
 
     /**
