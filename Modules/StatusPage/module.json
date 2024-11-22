@@ -1,0 +1,11 @@
+{
+    "name": "StatusPage",
+    "alias": "statuspage",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\StatusPage\\Providers\\StatusPageServiceProvider"
+    ],
+    "files": []
+}
