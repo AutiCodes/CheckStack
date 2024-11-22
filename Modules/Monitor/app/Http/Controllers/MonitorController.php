@@ -12,7 +12,7 @@ class MonitorController extends Controller
      */
     public function index()
     {
-        return view('monitor::index');
+        return view('monitor::monitors');
     }
 
     /**
@@ -20,7 +20,7 @@ class MonitorController extends Controller
      */
     public function create()
     {
-        return view('monitor::create');
+        return view('monitor::monitor_create');
     }
 
     /**
@@ -36,7 +36,7 @@ class MonitorController extends Controller
      */
     public function show($id)
     {
-        return view('monitor::show');
+        return view('monitor::monitors');
     }
 
     /**
