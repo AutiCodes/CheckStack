@@ -1,4 +1,5 @@
 {
     "Users": true,
-    "Admin": true
+    "Admin": true,
+    "StatusPage": true
 }
