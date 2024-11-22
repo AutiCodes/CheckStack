@@ -15,5 +15,5 @@ use Modules\StatusPage\Http\Controllers\StatusPageController;
 */
 
 Route::group([], function () {
-    Route::resource('statuspage', StatusPageController::class)->names('statuspage');
+    Route::resource('status', StatusPageController::class)->names('status');
 });
