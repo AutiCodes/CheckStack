@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
+<html lang="en">
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="referrer" content="always">
+    <link rel="canonical" href="">
 
-    <title>Admin Module - {{ config('app.name', 'Laravel') }}</title>
+    <meta name="description" content="">
 
-    <meta name="description" content="{{ $description ?? '' }}">
-    <meta name="keywords" content="{{ $keywords ?? '' }}">
-    <meta name="author" content="{{ $author ?? '' }}">
+    <title></title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    @vite('resources/css/app.css')
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
 
-    {{-- Vite CSS --}}
-    {{-- {{ module_vite('build-admin', 'resources/assets/sass/app.scss', storage_path('vite.hot')) }} --}}
-</head>
+  <body>
+    @include('admin::layouts.navbar')
 
-<body>
-    @yield('content')
+    @yield('body')
+  </body>
 
-    {{-- Vite JS --}}
-    {{-- {{ module_vite('build-admin', 'resources/assets/js/app.js', storage_path('vite.hot')) }} --}}
-</body>
+  <style>
+    body, html {
+      background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      height: 100%;
+    }
+  </style>
+</html>
