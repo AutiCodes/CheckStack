@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,11 +18,22 @@
 
     {{-- Vite CSS --}}
     {{-- {{ module_vite('build-statuspage', 'resources/assets/sass/app.scss', storage_path('vite.hot')) }} --}}
-</head>
+    @vite('resources/css/app.css')
 
-<body>
+    <!-- App CSS -->
+    <link rel="stylesheet" href="{{ Module::asset('StatusPage:css/app.css') }}">
+  </head>
+
+  <body>
     @yield('content')
-
     {{-- Vite JS --}}
     {{-- {{ module_vite('build-statuspage', 'resources/assets/js/app.js', storage_path('vite.hot')) }} --}}
-</body>
+  </body>
+
+  <style>
+    body, html {
+      background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      height: 100%;
+    }
+  </style>
+</html>
