@@ -4,14 +4,14 @@ namespace Modules\Monitor\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Modules\Monitor\Models\Pulse;
-
-// use Modules\Monitor\Database\Factories\MonitorFactory;
 
 class Monitor extends Model
 {
     use HasFactory;
+
+    protected $table = 'monitors';
 
     /**
      * The attributes that are mass assignable.
@@ -26,8 +26,8 @@ class Monitor extends Model
         'notification_type',
     ];
 
-    public function pulses(): belongsToMany
+    public function pulses(): BelongsToMany
     {
-        return $this->belongsToMany(Pulse::class);
+        return $this->BelongsToMany(Pulse::class);
     }
 }

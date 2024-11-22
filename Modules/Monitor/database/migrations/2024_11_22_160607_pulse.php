@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('pulse', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('status_code');
-            $table->integer('response_time');
+            $table->boolean('up');
+            $table->integer('response_time')->nullable;
             $table->timestamps();
         });
     }

@@ -4,28 +4,28 @@ namespace Modules\Monitor\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Modules\Monitor\Models\Monitor;
+
 // use Modules\Monitor\Database\Factories\PulseFactory;
 
 class Pulse extends Model
 {
     use HasFactory;
 
+    protected $table = 'pulse';
+
     /**
      * The attributes that are mass assignable.
      */
     protected $fillable = [
-        'monitor_id',
-        'pulse_id',
+        'id',
+        'up',
+        'response_time',
     ];
 
-    public function monitor(): belongsTo
+    public function monitor(): BelongsToMany
     {
-        return $this->belongsTo(Monitor::class);
+        return $this->BelongsToMany(Monitor::class, 'monitor_pulse');
     }
-    // protected static function newFactory(): PulseFactory
-    // {
-    //     // return PulseFactory::new();
-    // }
 }
