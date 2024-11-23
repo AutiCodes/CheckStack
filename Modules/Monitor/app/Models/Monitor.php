@@ -28,6 +28,6 @@ class Monitor extends Model
 
     public function pulses(): BelongsToMany
     {
-        return $this->BelongsToMany(Pulse::class)->orderBy('created_at', 'desc');
+        return $this->BelongsToMany(Pulse::class)->orderBy('created_at', 'DESC')->take(60);
     }
 }
