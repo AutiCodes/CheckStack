@@ -14,6 +14,6 @@ use Modules\StatusPage\Http\Controllers\StatusPageController;
 |
 */
 
-Route::group([], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('status', StatusPageController::class)->names('status');
 });
