@@ -14,6 +14,6 @@ use Modules\Monitor\Http\Controllers\MonitorController;
 |
 */
 
-Route::group([], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('monitor', MonitorController::class)->names('monitor');
 });

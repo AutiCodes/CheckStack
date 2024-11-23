@@ -15,10 +15,12 @@ use Modules\Users\Http\Controllers\AutenticationController;
 |
 */
 
-Route::group([], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', UsersController::class)->names('users');
 });
 
 Route::group([], function () {
     Route::get('login', [AutenticationController::class, 'login']);
+    Route::post('login-post', [AutenticationController::class, 'loginPost']);
+    Route::get('logout', [AutenticationController::class, 'logout']);
 });
