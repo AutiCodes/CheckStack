@@ -5,6 +5,7 @@ namespace Modules\Monitor\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Monitor\Models\Monitor;
+use App\Helpers\SendPulse;
 
 class MonitorController extends Controller
 {
