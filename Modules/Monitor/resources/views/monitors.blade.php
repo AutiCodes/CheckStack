@@ -4,6 +4,12 @@
   <div class="container mx-auto mt-3 max-w-prose">
     <img class="h-28 m-2 mx-auto" src="/media/check.png" alt="Check">
 
+    <a href="{{ route('monitor.create') }}">
+      <button class="bg-green-600 hover:bg-green-700 p-2 rounded">
+        Create
+      </button>
+    </a>
+
     <div class="text-center">
       <h1 class="text-2xl mx-auto font-bold place-items-center">
         All systems are operational
