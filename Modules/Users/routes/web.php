@@ -20,7 +20,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group([], function () {
-    Route::get('login', [AutenticationController::class, 'login']);
+    Route::get('login', [AutenticationController::class, 'login'])->name('login');
     Route::post('login-post', [AutenticationController::class, 'loginPost']);
-    Route::get('logout', [AutenticationController::class, 'logout']);
+    Route::get('logout', [AutenticationController::class, 'logout'])->name('logout');
 });
