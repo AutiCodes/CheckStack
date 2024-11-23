@@ -53,46 +53,7 @@
     </span>
     <div class="clear-both"></div>
 
-    @foreach ($monitors as $monitor)
-      <!-- monitor card -->
-      <div class="bg-white rounded-md shadow p-2 mt-2 mb-2">
-        <h4 class="float-start text-xl font-bold">
-          {{ $monitor->name }}
-        </h4>
-
-        <h4 class="float-end text-xl font-bold">
-          100% w.i.p
-        </h4>
-
-        <div class="clear-both"></div>
-
-        <!-- uptime bar -->
-        <div class="flex flex-row-reverse">
-          @foreach ($monitor->pulses->take(60) as $pulse)
-            @switch($pulse->up)
-              @case(1)
-                <div class="w-1 h-6 bg-green-500 me-1 float-none"></div>
-                @break
-              @case(0)
-                <div class="w-1 h-6 bg-red-500 me-1 float-none"></div>
-                @break
-            @endswitch
-          @endforeach
-        </div>
-
-        <div class="clear-both"></div>
-
-        <p class="float-left text-sm">
-          1 uur geleden
-        </p>
-
-        <p class="float-right text-sm">
-          1 minuut geleden
-        </p>
-
-        <div class="clear-both"></div>
-      </div>
-    @endforeach
+    <livewire:monitor::get-monitors />
 
     <!-- monitor card 2-->
     <div class="bg-white rounded-md shadow p-2 mt-2 mb-2">
