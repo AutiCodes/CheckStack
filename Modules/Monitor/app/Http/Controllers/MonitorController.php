@@ -50,7 +50,7 @@ class MonitorController extends Controller
             'notification_type' => $validated['notification_type'],
         ]);
 
-        return redirect(route('monitor.index'));
+        return redirect(route('monitor.index'))->with('success', 'Monitor has been added!');
     }
 
     /**
@@ -96,7 +96,7 @@ class MonitorController extends Controller
             'notification_type' => $validated['notification_type'],
         ]);
 
-        return redirect(route('monitor.index'));
+        return redirect(route('monitor.index'))->with('success', 'Monitor has been updated!');
     }
 
     /**
