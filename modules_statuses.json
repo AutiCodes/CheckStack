@@ -3,5 +3,6 @@
     "Admin": true,
     "StatusPage": true,
     "Monitor": true,
-    "Settings": true
+    "Settings": true,
+    "Notifications": true
 }

@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use App\Helpers\SendPulse;
 use Modules\Monitor\Models\Monitor;
 use Modules\Monitor\Models\Pulse as SendedPulse;
+use Modules\Monitor\Enums\NotificationTypeEnum;
 
 class Pulse implements ShouldQueue
 {
@@ -46,6 +47,13 @@ class Pulse implements ShouldQueue
             ]);
 
             $pulse->monitor()->attach($monitor->id);
+
+            switch ($monitor->notification_type) {
+                case (NotificationTypeEnum::EMAIL->value):
+                    break;
+                default:
+                    pass;
+            }
         }
     }
 }
