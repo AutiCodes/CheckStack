@@ -11,12 +11,16 @@ use App\Helpers\SendPulse;
 use Modules\Monitor\Models\Monitor;
 use Modules\Monitor\Models\Pulse as SendedPulse;
 use Modules\Monitor\Enums\NotificationTypeEnum;
+use Modules\Notifications\Emails\EmailMonitorNotification;
+use Mail;
+use Modules\Settings\Models\Setting;
 
 class Pulse implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $monitors;
+
     /**
      * Create a new job instance.
      */
@@ -48,8 +52,13 @@ class Pulse implements ShouldQueue
 
             $pulse->monitor()->attach($monitor->id);
 
+            if ($uptime == 1) {
+                return;
+            }
+
             switch ($monitor->notification_type) {
                 case (NotificationTypeEnum::EMAIL->value):
+                    Mail::to(Setting::where('name', 'notification_email')->first()->value)->send(new EmailMonitorNotification($monitor->name, $uptime));
                     break;
                 default:
                     pass;
