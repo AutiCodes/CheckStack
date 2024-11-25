@@ -31,7 +31,30 @@ class SettingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'notification_email' => ['nullable', 'string'],
+        ]);
+
+        try {
+            if (array_key_exists('notification_email', $validated)) {
+                if (!Setting::where('name', 'notification_email')->first()) {
+                    Setting::create([
+                        'name' => 'notification_email',
+                        'value' => $validated['notification_email'],
+                    ]);
+                } else {
+                    Setting::where('name', 'notification_email')->update([
+                        'value' => $validated['notification_email'],
+                    ]);
+                }
+
+            }
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Er ging iets mis! ' . $e->getMessage());
+        }
+
+
+        return redirect()->back()->with('success', 'Settings are saved!');
     }
 
     /**
