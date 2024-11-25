@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Monitor\Models\Monitor;
 use App\Helpers\SendPulse;
+use Modules\Settings\Models\Setting;
 
 class MonitorController extends Controller
 {
