@@ -12,9 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pulse', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->boolean('up');
-            $table->integer('response_time')->nullable;
+            $table->integer('response_time')->nullable();
+            $table->string('email_in_status')->nullable();
+            $table->string('email_out_status')->nullable();
+            $table->string('email_smtp_relay_status')->nullable();
+            $table->string('email_forward_status')->nullable();
             $table->timestamps();
         });
     }

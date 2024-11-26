@@ -1,30 +1,24 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
 use Modules\Monitor\Models\Monitor;
-use Modules\Monitor\Jobs\Pulse;
-
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote')->hourly();
+use Modules\Monitor\Jobs\MonitorHttps;
+use Modules\Monitor\Jobs\MonitorEmail;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Runs every minute
+ *
+ * Get the monitors per type that needs to run every minute
+ * And dispatches the apropiate job
  */
 Schedule::call(function () {
     try {
-        // Get monitor that need to run every minute
-        $monitors = Monitor::where('interval', '=', 1)->get();
-
-        $monitorIds = array();
-        foreach($monitors as $monitor) {
-            array_push($monitorIds, $monitor->id);
-        }
-        Pulse::dispatch($monitorIds);
+        MonitorHttps::dispatch(Monitor::where('interval', '=', 1)->where('type', 1)->get());
+        MonitorEmail::dispatch(Monitor::where('interval', '=', 1)->where('type', 2)->get());
     } catch (Exception $e) {
-        echo ($e);
+        Log::warning($e);
+        $this->info($e->getMessage());
     }
-
 })->everyMinute();

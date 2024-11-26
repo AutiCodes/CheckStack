@@ -12,13 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('monitors', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id('id');
             $table->string('name');
             $table->integer('type');
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->integer('interval');
-            $table->integer('expected_status_code');
+            $table->integer('expected_status_code')->nullable();
             $table->integer('notification_type');
+            $table->string('email_internal')->nullable();
+            $table->string('password_internal')->nullable();
+            $table->string('email_external')->nullable();
+            $table->string('password_external')->nullable();
+            $table->string('email_forward')->nullable();
+            $table->string('password_forward')->nullable();
             $table->timestamps();
         });
     }

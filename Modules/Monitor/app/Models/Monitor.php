@@ -24,6 +24,12 @@ class Monitor extends Model
         'interval',
         'expected_status_code',
         'notification_type',
+        'email_internal',
+        'password_internal',
+        'email_external',
+        'password_external',
+        'email_forward',
+        'password_forward',
     ];
 
     public function pulses(): BelongsToMany

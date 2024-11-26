@@ -22,6 +22,10 @@ class Pulse extends Model
         'id',
         'up',
         'response_time',
+        'email_in_status',
+        'email_out_status',
+        'email_smtp_relay_status',
+        'email_forward_status',
     ];
 
     public function monitor(): BelongsToMany

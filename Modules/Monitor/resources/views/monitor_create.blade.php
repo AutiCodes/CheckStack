@@ -1,6 +1,9 @@
 @extends('admin::layouts.master')
 
 @section('body')
+@if($errors->any())
+    {{ implode('', $errors->all('<div>:message</div>')) }}
+@endif
   <div class="w-full max-w-lg mx-auto mt-4">
     <form action="{{ route('monitor.store') }}" class="bg-white shawod rounded px-3 pt-6 pb-6 mb-4" method="POST">
       @csrf
@@ -55,7 +58,7 @@
           <label class="block text-gray-700 text-sm font-bold mb-2 " for="password">
             Password
           </label>
-          <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password_internal" name="internal_password" type="password" placeholder="******************">
+          <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password_internal" name="password_internal" type="password" placeholder="******************">
         </div>
 
         <hr>
