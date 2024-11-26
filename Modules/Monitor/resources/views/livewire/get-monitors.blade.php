@@ -75,37 +75,7 @@
         <!-- uptime bar -->
         <div class="flex flex-row-reverse">
           @foreach ($monitor->pulses->take(60) as $pulse)
-            @switch($pulse->up)
-              @case(1)
-                <div class="w-2 h-6 bg-green-500 me-1 float-none rounded"></div>
-                @break
-              @case(0)
-                <div class="w-2 h-6 bg-red-500 me-1 float-none rounded"></div>
-                @break
-            @endswitch
-          @endforeach
-        </div>
-
-        <div class="clear-both"></div>
-
-        <p class="float-left text-sm">
-          1 uur geleden
-        </p>
-
-        <p class="float-right text-sm">
-          1 minuut geleden
-        </p>
-
-        <div class="clear-both"></div>
-
-        <!-- uptime bar email in -->
-        <h2 class="font-bold">
-          Email out
-        </h2>
-        <!-- uptime bar -->
-        <div class="flex flex-row-reverse">
-          @foreach ($monitor->pulses->take(60) as $pulse)
-            @switch($pulse->up)
+            @switch($pulse->email_in_status)
               @case(1)
                 <div class="w-2 h-6 bg-green-500 me-1 float-none rounded"></div>
                 @break
@@ -126,24 +96,31 @@
         </p>
 
         <p class="float-right text-sm">
-          1 minuut geleden
+          @if (isset($monitor->pulses[0]->created_at))
+            {{ explode(' ', $monitor->pulses[0]->created_at)[1] }}
+          @else
+            Not yet monitored
+          @endif
         </p>
 
         <div class="clear-both"></div>
 
-        <!-- uptime bar email in -->
+        <!-- uptime bar email out -->
         <h2 class="font-bold">
-          Email relay out
+          Email out
         </h2>
         <!-- uptime bar -->
         <div class="flex flex-row-reverse">
           @foreach ($monitor->pulses->take(60) as $pulse)
-            @switch($pulse->up)
+            @switch($pulse->email_out_status)
               @case(1)
                 <div class="w-2 h-6 bg-green-500 me-1 float-none rounded"></div>
                 @break
               @case(0)
                 <div class="w-2 h-6 bg-red-500 me-1 float-none rounded"></div>
+                @break
+              @case(3)
+                <div class="w-2 h-6 bg-blue-500 me-1 float-none rounded"></div>
                 @break
             @endswitch
           @endforeach
@@ -156,7 +133,48 @@
         </p>
 
         <p class="float-right text-sm">
-          1 minuut geleden
+          @if (isset($monitor->pulses[0]->created_at))
+            {{ explode(' ', $monitor->pulses[0]->created_at)[1] }}
+          @else
+            Not yet monitored
+          @endif
+        </p>
+
+        <div class="clear-both"></div>
+
+        <!-- uptime bar email relay -->
+        <h2 class="font-bold">
+          Email relay out
+        </h2>
+        <!-- uptime bar -->
+        <div class="flex flex-row-reverse">
+          @foreach ($monitor->pulses->take(60) as $pulse)
+            @switch($pulse->email_smtp_relay_status)
+              @case(1)
+                <div class="w-2 h-6 bg-green-500 me-1 float-none rounded"></div>
+                @break
+              @case(0)
+                <div class="w-2 h-6 bg-red-500 me-1 float-none rounded"></div>
+                @break
+              @case(3)
+                <div class="w-2 h-6 bg-blue-500 me-1 float-none rounded"></div>
+                @break
+            @endswitch
+          @endforeach
+        </div>
+
+        <div class="clear-both"></div>
+
+        <p class="float-left text-sm">
+          1 uur geleden
+        </p>
+
+        <p class="float-right text-sm">
+          @if (isset($monitor->pulses[0]->created_at))
+            {{ explode(' ', $monitor->pulses[0]->created_at)[1] }}
+          @else
+            Not yet monitored
+          @endif
         </p>
 
         <div class="clear-both"></div>
@@ -168,12 +186,15 @@
         <!-- uptime bar -->
         <div class="flex flex-row-reverse">
           @foreach ($monitor->pulses->take(60) as $pulse)
-            @switch($pulse->up)
+            @switch($pulse->email_forward_status)
               @case(1)
                 <div class="w-2 h-6 bg-green-500 me-1 float-none rounded"></div>
                 @break
               @case(0)
                 <div class="w-2 h-6 bg-red-500 me-1 float-none rounded"></div>
+                @break
+              @case(3)
+                <div class="w-2 h-6 bg-blue-500 me-1 float-none rounded"></div>
                 @break
             @endswitch
           @endforeach
@@ -186,7 +207,11 @@
         </p>
 
         <p class="float-right text-sm">
-          1 minuut geleden
+          @if (isset($monitor->pulses[0]->created_at))
+            {{ explode(' ', $monitor->pulses[0]->created_at)[1] }}
+          @else
+            Not yet monitored
+          @endif
         </p>
 
         <div class="clear-both"></div>
