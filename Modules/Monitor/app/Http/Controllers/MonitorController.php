@@ -103,8 +103,13 @@ class MonitorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        //
+        $monitor = Monitor::find($id)->with('pulses')->first();
+
+        $monitor->pulses()->detach();
+        $monitor->delete();
+
+        return redirect()->back()->with('success', 'Monitor has been deleted');
     }
 }

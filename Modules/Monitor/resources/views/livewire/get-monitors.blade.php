@@ -33,7 +33,7 @@
       </p>
 
       <p class="float-right text-sm">
-        {{ explode(' ', $monitor->pulses[0]->created_at)[1] }}
+        {{ explode(' ', $monitor->pulses[0]->created_at)[1] ?? 'Not yet monitored!' }}
       </p>
 
       <div class="clear-both"></div>
@@ -42,7 +42,7 @@
         <img src="media/pencil.png" class="h-4">
       </a>
 
-      <a href="{{ route('monitor.destroy', $monitor->id) }}" class="float-left ml-2 mt-2" onclick="return confirm('Are you sure you want to delete this item?')">
+      <a href="/monitor-delete/{{ $monitor->id }}" class="float-left ml-2 mt-2" onclick="return confirm('Are you sure you want to delete this item?')">
         <img src="media/bin.png" class="h-4">
       </a>
 
