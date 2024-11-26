@@ -16,4 +16,5 @@ use Modules\Monitor\Http\Controllers\MonitorController;
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('monitor', MonitorController::class)->names('monitor');
+    Route::get('monitor-delete/{id}', [MonitorController::class, 'destroy']);
 });
