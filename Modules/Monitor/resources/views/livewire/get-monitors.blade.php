@@ -33,7 +33,7 @@
       </p>
 
       <p class="float-right text-sm">
-        1 minuut geleden
+        {{ explode(' ', $monitor->pulses[0]->created_at)[1] }}
       </p>
 
       <div class="clear-both"></div>
