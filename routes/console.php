@@ -20,7 +20,7 @@ Schedule::call(function () {
         MonitorEmail::dispatch(Monitor::where('interval', '=', 1)->where('type', 2)->get()); // Sending the emails out
         MonitorEmailVerify::dispatch(Monitor::with('pulses')->where('interval', '=', 1)->where('type', 2)->get())->delay(now()->addSeconds(30)); // Checks if emails are delivered
     } catch (Exception $e) {
-        Log::warning($e);
+        Log::channel('monitor_pulses')->warning($e);
         $this->info($e->getMessage());
     }
 })->everyMinute();

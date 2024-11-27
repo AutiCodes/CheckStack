@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Modules\Monitor\Models\Monitor;
 use Modules\Monitor\Models\Pulse;
+use Illuminate\Support\Facades\Log;
 
 class MonitorEmail implements ShouldQueue
 {
@@ -25,6 +26,7 @@ class MonitorEmail implements ShouldQueue
     {
         foreach($this->monitors as $monitor) {
             echo "\r\n Executing an email monitor check (one of two)";
+            Log::channel('monitor_pulses')->debug('Executing an email monitor job (one of two) for: ' . $monitor->name ?? 'No name');
 
             $pulse = Pulse::create([
                 'up' => 3,

@@ -13,6 +13,7 @@ use Modules\Monitor\Enums\NotificationTypeEnum;
 use Modules\Notifications\Emails\EmailMonitorNotification;
 use Mail;
 use Modules\Settings\Models\Setting;
+use Illuminate\Support\Facades\Log;
 
 class MonitorHttps implements ShouldQueue
 {
@@ -29,6 +30,7 @@ class MonitorHttps implements ShouldQueue
     {
         foreach($this->monitors as $monitor) {
             echo "\r\n Executing an HTTP(S) monitor check";
+            Log::channel('monitor_pulses')->debug('Executing an HTTP(S) monitor job for domain: ' . $monitor->name ?? 'No name');
             $resp = substr(get_headers($monitor->url)[0], 9, 3);
 
             if (intval($resp) != intval($monitor->expected_status_code)) {
