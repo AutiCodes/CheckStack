@@ -11,6 +11,7 @@
         "livewire/livewire": "^3.5",
         "mhmiton/laravel-modules-livewire": "^4.2",
         "nwidart/laravel-modules": "^11.1",
+        "phpmailer/phpmailer": "^6.9",
         "sentry/sentry-laravel": "^4.10"
     },
     "require-dev": {
